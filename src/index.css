@@ -1,68 +1,119 @@
-/* Variables for Dark Theme */
+/* Variables for Casino Dark Theme (Refined) */
 :root {
-  --bg-color: #1a1a2e; /* Dark background */
-  --card-bg-color: #16213e; /* Slightly lighter dark for cards */
+  --bg-color: #0c0c0c; /* Near black for background, like the example */
+  --card-bg-color: #1a1a1a; /* Darker gray for cards, subtle contrast */
   --text-color: #e0e0e0; /* Light text */
-  --primary-color: #0f3460; /* Darker blue for primary elements */
-  --accent-color: #e94560; /* Reddish accent for buttons/highlights */
-  --border-color: #2c3e50; /* Darker border */
-  --success-color: #4CAF50; /* Green for success */
-  --warning-color: #f57f17; /* Orange for warning */
-  --error-color: #d32f2f; /* Red for error */
-  --shadow-color: rgba(0, 0, 0, 0.4); /* Darker shadow */
-  --input-border-focus: #4a6c9e; /* Blueish on input focus */
+  --primary-color: #282828; /* Even darker gray for primary elements */
+  --accent-color: #00e6e6; /* Cyan/Aqua for highlights (more tech/neon feel) */
+  --neon-glow-color: #00ffff; /* Brighter Cyan for neon glow */
+  --border-color: #3a3a3a; /* Subtle dark border */
+  --input-bg: #1f1f1f; /* Darker input background */
+  --input-border-focus: #00e6e6; /* Cyan on input focus */
+  --button-bg: #008080; /* Teal for main button */
+  --button-hover-bg: #006666; /* Darker teal on hover */
+  --button-shadow: rgba(0, 128, 128, 0.4); /* Teal shadow */
+
+  /* Score Colors */
+  --score-high: #32cd32; /* Lime Green */
+  --score-medium: #ffd700; /* Gold */
+  --score-low: #dc143c; /* Crimson */
+
+  /* Shadows */
+  --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.8); /* Stronger, darker shadows */
+  --button-hover-shadow: 0 8px 20px rgba(0, 128, 128, 0.6);
 }
 
-/* Universal Styles & Base Reset */
+/* Background Pattern (Simplified to be very subtle) */
 body {
   margin: 0;
-  font-family: 'Vazirmatn', sans-serif; /* Apply Vazirmatn font */
+  font-family: 'Vazirmatn', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-color);
   color: var(--text-color);
-  direction: rtl; /* For RTL support */
-  text-align: right; /* For right-aligning content */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
+  direction: rtl;
+  text-align: right;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  /* Very subtle noise/texture, similar to QR-React example */
+  background-image: 
+    radial-gradient(circle at center, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 2px 2px;
 }
 
 #root {
-  max-width: 1100px; /* Slightly wider for better card layout */
+  max-width: 1200px; /* Max width for the entire app container */
   margin: 0 auto;
-  padding: 2.5rem; /* More padding */
+  padding: 2.5rem;
   text-align: center;
 }
 
 /* App Container - Main Card */
 .App {
   background-color: var(--card-bg-color);
-  border-radius: 20px; /* More rounded corners */
-  padding: 40px 50px; /* Increased padding */
-  box-shadow: 0 10px 40px var(--shadow-color); /* Stronger shadow */
+  border-radius: 20px;
+  padding: 40px 50px;
+  box-shadow: var(--card-shadow);
   border: 1px solid var(--border-color);
-  animation: fadeIn 0.8s ease-out; /* Fade in animation for the whole app */
+  animation: fadeIn 0.8s ease-out;
+  position: relative;
+  overflow: hidden;
+  /* Ensure App width matches the max-width of #root */
+  width: 100%; 
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Neon Title Effect (Refined for less brightness, more subtle pulse) */
+.neon-text {
+  color: #fff;
+  font-size: 3.5rem;
+  font-weight: 900;
+  text-shadow: 
+    0 0 5px #fff, /* Inner white glow */
+    0 0 10px var(--neon-glow-color), /* Primary neon glow */
+    0 0 20px var(--neon-glow-color),
+    0 0 30px var(--neon-glow-color);
+  animation: neonPulse 2s ease-in-out infinite alternate; /* More subtle pulse */
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+@keyframes neonPulse {
+  from {
+    text-shadow: 
+      0 0 5px #fff,
+      0 0 10px var(--neon-glow-color),
+      0 0 20px var(--neon-glow-color),
+      0 0 30px var(--neon-glow-color);
+  }
+  to {
+    text-shadow: 
+      0 0 3px #fff, /* Slightly less intense white */
+      0 0 8px var(--neon-glow-color), /* Slightly less intense neon */
+      0 0 15px var(--neon-glow-color),
+      0 0 25px var(--neon-glow-color);
+  }
+}
+
+.app-description {
+  color: #a0a0a0;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
 }
 
 /* Headings */
-h1 {
-  color: var(--accent-color); /* Accent color for main heading */
-  margin-bottom: 20px;
-  font-size: 3rem; /* Larger font size */
-  font-weight: 800; /* Bolder font */
-  text-shadow: 0 0 15px rgba(233, 69, 96, 0.3); /* Subtle glow */
-}
-
 h2 {
-  color: var(--text-color);
-  margin-bottom: 30px;
+  color: var(--accent-color); /* Cyan/Aqua for section titles */
+  margin-bottom: 25px;
   padding-bottom: 15px;
   font-size: 2.2rem;
   font-weight: 700;
-  border-bottom: 2px dashed var(--border-color); /* Dashed border for sections */
+  border-bottom: 2px dashed var(--border-color);
 }
 
 h3 {
-  color: var(--accent-color); /* Accent color for subheadings */
+  color: var(--text-color);
   margin-bottom: 15px;
   font-size: 1.8rem;
   font-weight: 600;
@@ -75,43 +126,49 @@ p {
   margin-bottom: 15px;
 }
 
-/* Input Section */
+/* Input Section - Adjusted to match overall width */
 .input-section {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* More gap */
+  gap: 20px;
   margin-top: 40px;
   margin-bottom: 50px;
   align-items: center;
-  position: relative; /* For animations */
+  position: relative;
+  /* New: Make input section take full width of its parent (.App's content area) */
+  width: 100%; 
+  box-sizing: border-box; 
+  padding: 0 50px; /* Match App's horizontal padding */
 }
 
 .input-section input[type="text"] {
-  padding: 18px 25px; /* More padding */
+  padding: 18px 25px;
   border: 2px solid var(--border-color);
-  border-radius: 12px; /* More rounded */
-  width: 90%;
-  max-width: 700px;
+  border-radius: 12px;
+  width: 100%; /* Take full width of input-section */
+  max-width: none; /* Remove max-width constraint */
   font-size: 1.2rem;
-  background-color: var(--primary-color); /* Darker input background */
+  background-color: var(--input-bg);
   color: var(--text-color);
   transition: all 0.3s ease;
   box-sizing: border-box;
-  outline: none; /* Remove default outline */
+  outline: none;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+  font-family: 'Vazirmatn', sans-serif;
 }
 
 .input-section input[type="text"]::placeholder {
-  color: #a0a0a0; /* Lighter placeholder text */
+  color: #6b7280;
 }
 
 .input-section input[type="text"]:focus {
   border-color: var(--input-border-focus);
-  box-shadow: 0 0 0 5px rgba(74, 108, 158, 0.4); /* Stronger glow */
+  box-shadow: 0 0 0 5px rgba(0, 204, 204, 0.4), inset 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .input-section button {
   padding: 18px 40px;
-  background-color: var(--accent-color);
+  background-color: var(--button-bg);
   color: white;
   border: none;
   border-radius: 12px;
@@ -119,86 +176,168 @@ p {
   font-size: 1.2rem;
   font-weight: bold;
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 5px 15px rgba(233, 69, 96, 0.3); /* Button shadow */
-  letter-spacing: 0.5px; /* Slightly spaced letters */
+  box-shadow: 0 5px 15px var(--button-shadow);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Vazirmatn', sans-serif; /* Apply Vazirmatn font */
+  width: 100%; /* Make button take full width of input-section */
+  max-width: 300px; /* Limit button width on larger screens for better aesthetics */
+}
+
+.input-section button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: skewX(-30deg);
+  transition: 0.5s;
+}
+
+.input-section button:hover::before {
+  left: 100%;
 }
 
 .input-section button:hover:not(:disabled) {
-  background-color: #c73950; /* Darker accent on hover */
-  transform: translateY(-5px) scale(1.02); /* More pronounced lift */
-  box-shadow: 0 8px 20px rgba(233, 69, 96, 0.4);
+  background-color: var(--button-hover-bg);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 20px var(--button-hover-shadow);
 }
 
 .input-section button:disabled {
-  background-color: #4a4a4a; /* Darker disabled state */
+  background-color: #4a4a4a;
   color: #999;
   cursor: not-allowed;
   box-shadow: none;
 }
 
-/* Analysis Results Section - Card-like structure */
-.analysis-results {
+/* Analysis Results Grid Container */
+.analysis-results-grid {
   margin-top: 50px;
-  background-color: var(--primary-color); /* Background for results card */
+  display: grid;
+  gap: 30px;
+  grid-template-columns: 1fr; /* Default to single column for mobile */
+  animation: slideInUp 0.7s ease-out;
+}
+
+/* Individual Result Cards */
+.result-card {
+  background-color: var(--primary-color);
   border: 1px solid var(--border-color);
   border-radius: 18px;
   padding: 35px 45px;
   text-align: right;
-  box-shadow: 0 8px 25px var(--shadow-color);
-  animation: slideInUp 0.7s ease-out; /* Slide in animation */
+  box-shadow: 0 8px 25px var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  background-image: 
+    radial-gradient(circle at top left, rgba(255,255,255,0.03) 1%, transparent 10%),
+    radial-gradient(circle at bottom right, rgba(255,255,255,0.03) 1%, transparent 10%);
+  background-size: 200% 200%;
 }
 
-/* Individual Result Cards/Sections */
-.result-section {
-  margin-bottom: 35px;
-  padding-bottom: 25px;
-  border-bottom: 1px dashed var(--border-color); /* Dashed separator */
-  position: relative; /* For ::before pseudo-element */
+.result-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
 }
 
-.result-section:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
+/* Specific section styling */
+.summary-section h2, .tasks-section h2, .links-section h2, .worth-score-section h2,
+.project-goals-section h2, .full-description-section h2, .current-progress-section h2,
+.how-to-get-points-section h2, .project-type-section h2, .start-date-section h2 {
+  color: var(--accent-color);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 5px rgba(0, 204, 204, 0.3); /* Subtle cyan glow for card titles */
 }
 
 /* List styling */
-.result-section ul {
+.result-card ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-.result-section li {
+.result-card li {
   margin-bottom: 12px;
   color: var(--text-color);
   position: relative;
-  padding-right: 35px; /* Space for custom bullet */
+  padding-right: 35px;
   text-align: justify;
   line-height: 1.8;
   font-size: 1.05rem;
 }
 
-.result-section li::before {
-  content: '⚡'; /* Custom bullet point (e.g., a lightning bolt emoji) */
-  color: var(--accent-color); /* Use accent color for bullet */
+.result-card li::before {
+  content: '✦'; /* Star/Asterisk emoji for tech/neon feel */
+  color: var(--accent-color);
   font-weight: bold;
   position: absolute;
   right: 0;
   top: 0;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
-.result-section a {
-  color: #72a1e0; /* Lighter blue for links in dark theme */
+.result-card a {
+  color: #72a1e0;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;
 }
 
-.result-section a:hover {
+.result-card a:hover {
   color: #9ac2ef;
   text-decoration: underline;
+}
+
+/* Score Section Specific Styles */
+.worth-score-section {
+  text-align: center;
+  background: linear-gradient(135deg, #003333, #000000); /* Dark teal to black gradient */
+  border: 1px solid #006666;
+  padding: 40px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+}
+
+.score-display {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.score-number {
+  font-size: 5.5rem;
+  font-weight: 900;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  line-height: 1;
+}
+
+.score-total {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #a0a0a0;
+  margin-right: 15px;
+}
+
+/* Dynamic Score Colors */
+.score-low .score-number { color: var(--score-low); text-shadow: 0 0 15px var(--score-low); }
+.score-medium .score-number { color: var(--score-medium); text-shadow: 0 0 15px var(--score-medium); }
+.score-high .score-number { color: var(--score-high); text-shadow: 0 0 15px var(--score-high); }
+
+
+.worth-reasoning {
+  font-size: 1.1rem;
+  color: #c0c0c0;
+  line-height: 1.7;
+  text-align: justify;
 }
 
 /* Messages (Error, Loading, Warning) */
@@ -208,28 +347,28 @@ p {
   border: 1px solid var(--error-color);
   padding: 18px;
   border-radius: 12px;
-  margin-top: 30px;
+  margin-top: 25px;
   font-weight: bold;
-  animation: shake 0.5s; /* Shake animation for errors */
+  animation: shake 0.5s;
 }
 
 .loading-message {
   color: var(--accent-color);
-  background-color: rgba(233, 69, 96, 0.1);
+  background-color: rgba(0, 204, 204, 0.1); /* Cyan tint */
   border: 1px solid var(--accent-color);
   padding: 18px;
   border-radius: 12px;
-  margin-top: 30px;
-  animation: pulse 1.5s infinite ease-in-out; /* Pulsing animation for loading */
+  margin-top: 25px;
+  animation: pulse 1.5s infinite ease-in-out;
 }
 
-.warning-message {
+.warning-message-card {
   color: var(--warning-color);
   background-color: rgba(245, 127, 23, 0.2);
   border: 1px solid var(--warning-color);
   padding: 18px;
   border-radius: 12px;
-  margin-top: 30px;
+  margin-top: 25px;
   font-weight: bold;
 }
 
@@ -256,13 +395,99 @@ p {
   20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments for Grid */
 @media (min-width: 768px) {
   .input-section {
     flex-direction: row;
     gap: 20px;
+    /* Adjust padding to match the content width */
+    padding: 0 50px; /* Matches App padding */
   }
   .input-section input[type="text"] {
-    width: 70%;
+    width: calc(100% - 300px); /* Adjust width based on button max-width + gap */
+    max-width: none; /* Remove max-width for input in row layout */
+  }
+  .input-section button {
+    width: 280px; /* Fixed width for button */
+  }
+
+  .analysis-results-grid {
+    grid-template-columns: repeat(3, 1fr); /* Force 3 columns on larger screens */
+  }
+
+  /* Specific column spans for larger screens */
+  .worth-score-section {
+    grid-column: span 1;
+  }
+  .summary-section {
+    grid-column: span 2;
+  }
+  .project-goals-section {
+    grid-column: span 1;
+  }
+  .project-type-section {
+    grid-column: span 1;
+  }
+  .full-description-section {
+    grid-column: span 2;
+  }
+  .current-progress-section {
+    grid-column: span 1;
+  }
+  .tasks-section {
+    grid-column: span 2;
+  }
+  .how-to-get-points-section {
+    grid-column: span 1;
+  }
+  .start-date-section {
+    grid-column: span 1;
+  }
+  .links-section {
+    grid-column: span 1;
+  }
+  .warning-message-card {
+    grid-column: span 3; /* Warnings takes full width */
+  }
+}
+
+/* Adjustments for very large screens (optional) */
+@media (min-width: 1024px) {
+  .analysis-results-grid {
+    grid-template-columns: repeat(3, 1fr); /* Force 3 columns on very large screens */
+  }
+  /* Re-adjust spans if needed for 3 columns */
+  .summary-section {
+    grid-column: span 2;
+  }
+  .worth-score-section {
+    grid-column: span 1;
+  }
+  .project-goals-section {
+    grid-column: span 1;
+  }
+  .project-type-section {
+    grid-column: span 1;
+  }
+  .full-description-section {
+    grid-column: span 2;
+  }
+  .current-progress-section {
+    grid-column: span 1;
+  }
+  .tasks-section {
+    grid-column: span 2;
+  }
+  .how-to-get-points-section {
+    grid-column: span 1;
+  }
+  .start-date-section {
+    grid-column: span 1;
+  }
+  .links-section {
+    grid-column: span 1;
+  }
+  .warning-message-card {
+    grid-column: span 3;
   }
 }
